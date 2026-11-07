@@ -1,20 +1,17 @@
 // evita duplicação de codigo
 
-// js/components.js — Injeção Dinâmica de Header, Sticky Header e Menu Lateral
+// js/components.js — Injeção Dinâmica de Headers (Com distinção entre Home e Internas)
 (function () {
-  // Deteta se a página atual está dentro da pasta /paginas/
   const currentPath = window.location.pathname;
   const isSubfolder = currentPath.includes('/paginas/');
   
-  // Define os caminhos relativos de acordo com a localização do ficheiro
   const basePath = isSubfolder ? '../' : './';
   const pagePath = isSubfolder ? '' : 'paginas/';
 
-  // Pega o título e subtítulo configurados na tag <body> da página
   const pageTitle = document.body.dataset.pageTitle || 'JORNAL ECONÔMICO';
   const pageSubtitle = document.body.dataset.pageSubtitle || 'JEU UNICAMP — INSTITUTO DE ECONOMIA';
 
-  // 1. Template do Menu Lateral (Drawer)
+  // 1. MENU LATERAL (Idêntico para todas)
   const sideMenuHTML = `
     <div class="side-menu-overlay" id="sideMenuOverlay"></div>
     <aside class="side-menu" id="sideMenu">
@@ -34,7 +31,7 @@
             <li><a href="${pagePath}global.html">Global</a></li>
           </ul>
         </li>
-        <li><a href="${pagePath}diagnosticos.html">Diagnóstico Mensal</a></li>
+        <li><a href="${pagePath}diagnosticos-mensais.html">Diagnóstico Mensal</a></li>
         <li><a href="${basePath}index.html#sobre">Quem Somos</a></li>
         <li><a href="${basePath}index.html#processo-seletivo">Processo Seletivo</a></li>
         <li><a href="${basePath}painel-redator.html">Área do Membro</a></li>
@@ -42,9 +39,8 @@
     </aside>
   `;
 
-  // 2. Template da Topbar + Header Principal + Sticky Header
-  const headerHTML = `
-    <!-- TOPBAR COM COTADAÇÕES -->
+  // 2. TOPBAR COM COTAÇÕES (Idêntica para todas)
+  const topbarHTML = `
     <div class="topbar">
       <div class="ticker-container">
         <div class="ticker-wrap">
@@ -55,72 +51,98 @@
         </div>
       </div>
     </div>
+  `;
 
-    <!-- HEADER PRINCIPAL -->
-    <header class="main-header" id="mainHeader">
-      <div class="header-left">
-        <button class="btn-menu-toggle" id="btnMenuToggle">
-          <svg width="18" height="14" viewBox="0 0 18 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-            <line x1="0" y1="1" x2="18" y2="1"/>
-            <line x1="0" y1="7" x2="18" y2="7"/>
-            <line x1="0" y1="13" x2="18" y2="13"/>
-          </svg> MENU
-        </button>
-      </div>
+  // 3. HEADER PRINCIPAL DINÂMICO
+  let mainHeaderHTML = '';
 
-      <div class="brand-center">
-        <a href="${basePath}index.html">
-          <img src="${basePath}assets/logo.png" alt="Ícone JEU" class="brand-logo-img">
-        </a>
-        <div class="brand-text">
-          <h1 class="brand-title">${pageTitle}</h1>
-          <span class="brand-subtitle">${pageSubtitle}</span>
-        </div>
-      </div>
-
-      <div class="header-right">
-        <form class="search-box" id="searchForm">
-          <input type="text" class="search-input" id="searchInput" placeholder="Buscar..." aria-label="Buscar no site">
-          <button type="submit" class="search-btn" aria-label="Confirmar busca">
-            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="11" cy="11" r="8"></circle>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
+  if (!isSubfolder) {
+    // LAYOUT DA PÁGINA INICIAL (INDEX) - Mantém o padrão original
+    mainHeaderHTML = `
+      <header class="main-header" id="mainHeader">
+        <div class="header-left">
+          <button class="btn-menu-toggle" id="btnMenuToggle">
+            <svg width="18" height="14" viewBox="0 0 18 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <line x1="0" y1="1" x2="18" y2="1"/><line x1="0" y1="7" x2="18" y2="7"/><line x1="0" y1="13" x2="18" y2="13"/>
+            </svg> MENU
           </button>
-        </form>
-        <a href="${basePath}painel-redator.html" class="btn-entrar">Entrar</a>
-      </div>
-    </header>
+        </div>
+        <div class="brand-center">
+          <a href="${basePath}index.html">
+            <img src="${basePath}assets/logo.png" alt="Ícone JEU" class="brand-logo-img">
+          </a>
+          <div class="brand-text">
+            <h1 class="brand-title">${pageTitle}</h1>
+            <span class="brand-subtitle">${pageSubtitle}</span>
+          </div>
+        </div>
+        <div class="header-right">
+          <form class="search-box" id="searchForm">
+            <input type="text" class="search-input" id="searchInput" placeholder="Buscar..." aria-label="Buscar no site">
+            <button type="submit" class="search-btn" aria-label="Confirmar busca">
+              <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </button>
+          </form>
+          <a href="${basePath}painel-redator.html" class="btn-entrar">Entrar</a>
+        </div>
+      </header>
+    `;
+  } else {
+    // LAYOUT DAS SUBPÁGINAS (Mais enxuto, sem o logo gigante no centro)
+    mainHeaderHTML = `
+      <header class="main-header" id="mainHeader" style="padding-top: 15px; padding-bottom: 15px; min-height: 70px;">
+        
+        <div class="header-left" style="display: flex; align-items: center; gap: 20px;">
+          <button class="btn-menu-toggle" id="btnMenuToggle">
+            <svg width="18" height="14" viewBox="0 0 18 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <line x1="0" y1="1" x2="18" y2="1"/><line x1="0" y1="7" x2="18" y2="7"/><line x1="0" y1="13" x2="18" y2="13"/>
+            </svg> MENU
+        </div>
 
-    <!-- CABEÇALHO FIXO ENXUTO (STICKY HEADER) -->
+        <div class="brand-center">
+          <div class="brand-text" style="text-align: center;">
+            <h1 class="brand-title" style="font-size: 1.8rem; margin: 0; letter-spacing: 1px;">${pageTitle}</h1>
+            <span class="brand-subtitle" style="font-size: 0.75rem; letter-spacing: 1px;">${pageSubtitle}</span>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <form class="search-box" id="searchForm">
+            <input type="text" class="search-input" id="searchInput" placeholder="Buscar..." aria-label="Buscar no site">
+            <button type="submit" class="search-btn" aria-label="Confirmar busca">
+              <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </button>
+          </form>
+          <a href="${basePath}painel-redator.html" class="btn-entrar">Entrar</a>
+        </div>
+
+      </header>
+    `;
+  }
+
+  // 4. STICKY HEADER (Idêntico para todas)
+  const stickyHeaderHTML = `
     <div class="sticky-header" id="stickyHeader">
       <div class="sticky-container">
         <button class="btn-menu-toggle" id="btnStickyMenuToggle">
           <svg width="18" height="14" viewBox="0 0 18 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-            <line x1="0" y1="1" x2="18" y2="1"/>
-            <line x1="0" y1="7" x2="18" y2="7"/>
-            <line x1="0" y1="13" x2="18" y2="13"/>
+            <line x1="0" y1="1" x2="18" y2="1"/><line x1="0" y1="7" x2="18" y2="7"/><line x1="0" y1="13" x2="18" y2="13"/>
           </svg> MENU
         </button>
-
         <a href="${basePath}index.html" class="sticky-brand">
           <img src="${basePath}assets/logo.png" alt="Ícone JEU" class="sticky-logo-img">
           <span>JEU UNICAMP</span>
         </a>
-
         <form class="search-box" id="stickySearchForm">
           <input type="text" class="search-input" id="stickySearchInput" placeholder="Buscar..." aria-label="Buscar no site">
           <button type="submit" class="search-btn" aria-label="Confirmar busca">
-            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="11" cy="11" r="8"></circle>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
           </button>
         </form>
       </div>
     </div>
   `;
 
-  // Insere o HTML gerado no topo da tag <body>
-  document.body.insertAdjacentHTML('afterbegin', sideMenuHTML + headerHTML);
+  // Insere os elementos no início do <body>
+  document.body.insertAdjacentHTML('afterbegin', sideMenuHTML + topbarHTML + mainHeaderHTML + stickyHeaderHTML);
 })();
