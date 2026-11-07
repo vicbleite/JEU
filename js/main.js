@@ -1,38 +1,42 @@
-// Aguarda o carregamento completo do HTML antes de executar os scripts
+// Aguarda o carregamento completo do HTML e dos componentes antes de executar
 document.addEventListener('DOMContentLoaded', () => {
 
   // ==========================================
-  // 1. CONTROLO DO MENU LATERAL (DRAWER)
+  // 1. CONTROLE DO MENU LATERAL (DRAWER)
   // ==========================================
-  const btnMenuToggle = document.getElementById('btnMenuToggle');
-  const btnCloseMenu = document.getElementById('btnCloseMenu');
   const sideMenu = document.getElementById('sideMenu');
   const sideMenuOverlay = document.getElementById('sideMenuOverlay');
 
-  // Função para abrir o menu lateral
   function openSideMenu() {
     if (sideMenu && sideMenuOverlay) {
       sideMenu.classList.add('active');
       sideMenuOverlay.classList.add('active');
-      document.body.style.overflow = 'hidden'; // Impede o scroll da página ao abrir o menu
+      document.body.style.overflow = 'hidden';
     }
   }
 
-  // Função para fechar o menu lateral
   function closeSideMenu() {
     if (sideMenu && sideMenuOverlay) {
       sideMenu.classList.remove('active');
       sideMenuOverlay.classList.remove('active');
-      document.body.style.overflow = ''; // Restaura o scroll da página
+      document.body.style.overflow = '';
     }
   }
 
-  // Eventos de clique para abrir e fechar
-  if (btnMenuToggle) btnMenuToggle.addEventListener('click', openSideMenu);
-  if (btnCloseMenu) btnCloseMenu.addEventListener('click', closeSideMenu);
-  if (sideMenuOverlay) sideMenuOverlay.addEventListener('click', closeSideMenu);
+  // Event Delegation para garantir o clique nos botões de menu principal e sticky
+  document.addEventListener('click', (event) => {
+    const toggleBtn = event.target.closest('#btnMenuToggle, #btnStickyMenuToggle');
+    const closeBtn = event.target.closest('#btnCloseMenu');
+    const overlay = event.target.closest('#sideMenuOverlay');
 
-  // Fechar o menu ao clicar nos links (exceto no link principal do submenu)
+    if (toggleBtn) {
+      openSideMenu();
+    } else if (closeBtn || overlay) {
+      closeSideMenu();
+    }
+  });
+
+  // Fechar o menu ao clicar nos links (exceto na sanfona principal)
   const sideMenuLinks = document.querySelectorAll('.side-menu-list a:not(.side-link-main)');
   sideMenuLinks.forEach(link => {
     link.addEventListener('click', closeSideMenu);
@@ -46,54 +50,76 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (sideLinkMain && sideDropdown) {
     sideLinkMain.addEventListener('click', (event) => {
-      event.preventDefault(); // Evita a navegação imediata ao apenas expandir a lista
-      
-      // Alterna a classe 'open' para exibir/esconder o submenu e girar a seta
+      event.preventDefault();
       sideLinkMain.classList.toggle('open');
       sideDropdown.classList.toggle('open');
     });
   }
 
   // ==========================================
-  // 3. FORMULÁRIO DE PESQUISA
+  // 3. APARIÇÃO DINÂMICA DO STICKY HEADER
   // ==========================================
-  const searchForm = document.getElementById('searchForm');
-  const searchInput = document.getElementById('searchInput');
+  const mainHeader = document.getElementById('mainHeader');
+  const stickyHeader = document.getElementById('stickyHeader');
 
-  if (searchForm) {
-    searchForm.addEventListener('submit', (event) => {
-      event.preventDefault();
-      const query = searchInput ? searchInput.value.trim() : '';
+  if (mainHeader && stickyHeader) {
+    window.addEventListener('scroll', () => {
+      const headerBottom = mainHeader.getBoundingClientRect().bottom;
 
-      if (query !== '') {
-        alert(`A pesquisar por: ${query}`);
-        // Futuramente, aqui irás redirecionar para a página de resultados
+      if (headerBottom < 0) {
+        stickyHeader.classList.add('visible');
       } else {
-        alert('Por favor, digite um termo para pesquisar.');
+        stickyHeader.classList.remove('visible');
       }
     });
   }
 
   // ==========================================
-  // 4. CONTROLO INTELIGENTE DE LINK ATIVO PELA URL
+  // 4. FORMULÁRIOS DE PESQUISA (MAIN E STICKY)
   // ==========================================
-  const currentPath = window.location.pathname;
+  const handleSearchSubmit = (event, inputElement) => {
+    event.preventDefault();
+    const query = inputElement ? inputElement.value.trim() : '';
+
+    if (query !== '') {
+      alert(`A pesquisar por: ${query}`);
+    } else {
+      alert('Por favor, digite um termo para pesquisar.');
+    }
+  };
+
+  const searchForm = document.getElementById('searchForm');
+  const searchInput = document.getElementById('searchInput');
+  if (searchForm) {
+    searchForm.addEventListener('submit', (e) => handleSearchSubmit(e, searchInput));
+  }
+
+  const stickySearchForm = document.getElementById('stickySearchForm');
+  const stickySearchInput = document.getElementById('stickySearchInput');
+  if (stickySearchForm) {
+    stickySearchForm.addEventListener('submit', (e) => handleSearchSubmit(e, stickySearchInput));
+  }
+
+  // ==========================================
+  // 5. CONTROLE INTELIGENTE DE LINK ATIVO PELA URL
+  // ==========================================
+  const currentPageFile = window.location.pathname.split('/').pop() || 'index.html';
   const navLinks = document.querySelectorAll('.nav-link, .side-menu-list a');
 
   navLinks.forEach(link => {
     const href = link.getAttribute('href');
-    
-    // Se a URL contiver o caminho do link, adiciona a classe active
-    if (href && currentPath.includes(href) && href !== 'index.html' && href !== '../index.html') {
+    if (!href || href.startsWith('#')) return;
+
+    const linkFile = href.split('/').pop();
+
+    if (linkFile === currentPageFile && linkFile !== 'index.html') {
       link.classList.add('active');
 
-      // Se o link ativo estiver dentro do submenu, mantém o submenu expandido
-      if (link.closest('.side-dropdown')) {
-        const parentDropdown = link.closest('.side-dropdown');
+      const parentDropdown = link.closest('.side-dropdown');
+      if (parentDropdown) {
+        parentDropdown.classList.add('open');
         const parentLinkMain = parentDropdown.previousElementSibling;
-        
-        if (parentDropdown && parentLinkMain) {
-          parentDropdown.classList.add('open');
+        if (parentLinkMain) {
           parentLinkMain.classList.add('open');
         }
       }

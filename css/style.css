@@ -760,3 +760,51 @@ footer {
   flex-direction: column;
   align-items: center;
 } 
+
+/* ==========================================
+   CABEÇALHO FIXO SECUNDÁRIO (STICKY HEADER)
+   ========================================== */
+.sticky-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--off-white);
+  border-bottom: 1px solid var(--bege-acinzentado);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  z-index: 900;
+  padding: 8px 40px;
+  transform: translateY(-100%);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.sticky-header.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.sticky-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sticky-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--fonte-titulo);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--grafite-profundo);
+  text-transform: uppercase;
+}
+
+.sticky-logo-img {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+}

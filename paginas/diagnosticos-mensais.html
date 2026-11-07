@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diagnóstico de Mercado — JEU Unicamp</title>
+  
+  <!-- Ícone da Aba do Navegador (Favicon) -->
+  <link rel="icon" type="image/png" href="../assets/logo-canva.png">
+
+  <!-- Fontes Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Arquivo de Estilos Externo -->
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<!-- Título e subtítulo dinâmicos processados pelo components.js -->
+<body data-page-title="DIAGNÓSTICO MENSAL" data-page-subtitle="RELATÓRIOS CONJUNTURAIS — JEU UNICAMP">
+
+  <!-- O components.js injeta aqui automaticamente:
+       - Menu Lateral (Drawer)
+       - Topbar com cotações
+       - Header Principal
+       - Sticky Header dinâmico
+  -->
+
+  <!-- CONTEÚDO PRINCIPAL DA PÁGINA -->
+  <main class="container" style="margin-top: 40px; margin-bottom: 60px;">
+    
+    <!-- Apresentação do Diagnóstico -->
+    <section class="hero-card" style="margin-bottom: 40px;">
+      <h2>Histórico de Diagnósticos de Mercado</h2>
+      <p>Nossos relatórios mensais compilam as investigações conjunturais das cinco frentes de pesquisa do JEU (Equities, Renda Fixa, Commodities, Forex e Global), oferecendo uma leitura técnica, integrada e acessível.</p>
+    </section>
+
+    <!-- Edição em Destaque (Edição Atual) -->
+    <section style="margin-bottom: 50px;">
+      <h3 style="margin-bottom: 20px; font-family: 'DM Serif Display', serif; font-size: 1.8rem;">Edição Atual</h3>
+      
+      <div class="diagnostic-banner" style="margin-bottom: 0;">
+        <div class="diagnostic-info">
+          <span class="hero-tag" style="background-color: var(--verde-suave); color: var(--grafite-profundo);">Maio / 2024</span>
+          <h3 style="margin-top: 10px;">Diagnóstico Econômico — Edição #12</h3>
+          <p>Análise aprofundada sobre a desaceleração da inflação global, a trajetória dos juros nos EUA e no Brasil e seus impactos na alocação de ativos locais.</p>
+        </div>
+        <div>
+          <a href="#" class="btn-primary" style="background-color: var(--verde-suave); color: var(--grafite-profundo); display: inline-block; text-align: center;">Baixar Relatório (PDF)</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Grid com o Histórico de Edições Anteriores -->
+    <section id="historico-edicoes">
+      <h3 style="margin-bottom: 20px; font-family: 'DM Serif Display', serif; font-size: 1.8rem;">Edições Anteriores</h3>
+      
+      <div class="research-grid">
+
+        <article class="research-card">
+          <div class="research-card-tag">Abril / 2024</div>
+          <h4>Diagnóstico Econômico — Edição #11</h4>
+          <p>O impacto do choque nas commodities agrícolas e metálicas e o reposicionamento das curvas de juros emergentes.</p>
+          <a href="#" class="btn-secondary" style="margin-top: 15px; display: inline-block; font-size: 0.85rem; width: 100%; text-align: center;">Baixar PDF</a>
+        </article>
+
+        <article class="research-card">
+          <div class="research-card-tag">Março / 2024</div>
+          <h4>Diagnóstico Econômico — Edição #10</h4>
+          <p>Abertura do primeiro trimestre: balanços corporativos na B3 e expectativas cambiais para o USD/BRL.</p>
+          <a href="#" class="btn-secondary" style="margin-top: 15px; display: inline-block; font-size: 0.85rem; width: 100%; text-align: center;">Baixar PDF</a>
+        </article>
+
+        <article class="research-card">
+          <div class="research-card-tag">Fevereiro / 2024</div>
+          <h4>Diagnóstico Econômico — Edição #09</h4>
+          <p>Perspectivas fiscais para 2024 e análise comparativa de valorização entre setores defensivos e cíclicos.</p>
+          <a href="#" class="btn-secondary" style="margin-top: 15px; display: inline-block; font-size: 0.85rem; width: 100%; text-align: center;">Baixar PDF</a>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- RODAPÉ -->
+  <footer>
+    <div class="footer-container">
+      <div>
+        <h5>JEU — Jornal Econômico Universitário</h5>
+        <p>Projeto de extensão nascido no Instituto de Economia da Unicamp.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Páginas</h5>
+        <ul>
+          <li><a href="../index.html#sobre">Sobre o Projeto</a></li>
+          <li><a href="../index.html#areas">Áreas de Pesquisa</a></li>
+          <li><a href="diagnosticos.html">Diagnóstico Mensal</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contato & Redes</h5>
+        <ul>
+          <li><a href="https://instagram.com/jeu_unicamp" target="_blank" rel="noopener noreferrer">Instagram: @jeu_unicamp</a></li>
+          <li>Instituto de Economia - Unicamp</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; Jornal Econômico Universitário — IE Unicamp. Todos os direitos reservados.
+    </div>
+  </footer>
+
+  <!-- SCRIPTS EXTERNOS -->
+  <script src="../js/components.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>
