@@ -239,80 +239,9 @@ a {
   height: 15px;
 }
 
-/* ==========================================================================
-   3. MENU DE NAVEGAÇÃO
-   ========================================================================== */
+/* Oculta completamente o menu horizontal legado se existirem restos no HTML */
 .main-nav {
-  background-color: var(--grafite-profundo);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.nav-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0 20px;
-}
-
-.nav-list {
-  display: flex;
-  list-style: none;
-}
-
-.nav-item {
-  position: relative;
-}
-
-.nav-link {
-  display: block;
-  color: var(--off-white);
-  padding: 16px 20px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  letter-spacing: 0.3px;
-  transition: color 0.2s, background-color 0.2s;
-}
-
-.nav-link:hover {
-  background-color: var(--grafite-medio);
-  color: var(--verde-suave);
-}
-
-.dropdown {
-  position: relative;
-}
-
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: var(--grafite-medio);
-  min-width: 180px;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-  list-style: none;
-  border-top: 2px solid var(--verde-escuro);
-}
-
-.dropdown:hover .dropdown-menu {
-  display: block;
-}
-
-.dropdown-menu a {
-  padding: 12px 16px;
-  display: block;
-  color: var(--off-white);
-  font-size: 0.85rem;
-}
-
-.dropdown-menu a:hover {
-  background-color: var(--grafite-profundo);
-  color: var(--verde-suave);
+  display: none !important;
 }
 
 /* ==========================================================================
@@ -643,3 +572,191 @@ footer {
   text-align: center;
   font-size: 0.8rem;
 }
+
+/* ==========================================
+   ESTILOS DO MENU LATERAL (DRAWER)
+   ========================================== */
+
+/* Fundo escurecido atrás do menu */
+.side-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: none;
+  z-index: 998;
+}
+
+/* Painel lateral branco */
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -300px;
+  width: 280px;
+  height: 100%;
+  background-color: #ffffff;
+  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.15);
+  transition: left 0.3s ease;
+  z-index: 999;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.side-menu.active {
+  left: 0;
+}
+
+.side-menu-overlay.active {
+  display: block;
+}
+
+/* Cabeçalho do Menu */
+.side-menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 14px;
+  margin-bottom: 20px;
+}
+
+.side-menu-header h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.2rem;
+  margin: 0;
+  color: #111111;
+}
+
+.btn-close-menu {
+  background: none;
+  border: none;
+  font-size: 26px;
+  color: #666666;
+  cursor: pointer;
+  line-height: 1;
+}
+
+/* Lista de links do menu lateral */
+.side-menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.side-menu-list li {
+  margin-bottom: 18px;
+}
+
+.side-menu-list a {
+  text-decoration: none;
+  color: #222222;
+  font-weight: 600;
+  font-size: 1rem;
+  display: inline-block;
+  padding-bottom: 4px;
+  background: transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Efeito ao passar o mouse (Hover) e item Ativo */
+.side-menu-list a:hover,
+.side-menu-list a.active {
+  color: #739832;
+  background: transparent;
+  border-bottom: 2px solid #739832;
+}
+
+/* Submenu das Áreas de Pesquisa */
+.side-dropdown-item {
+  position: relative;
+}
+
+.side-dropdown {
+  display: none;
+  list-style: none;
+  padding-left: 14px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-left: 2px solid #739832;
+}
+
+.side-dropdown li {
+  margin-bottom: 10px;
+}
+
+.side-dropdown a {
+  font-size: 0.9rem;
+  color: #555555;
+  font-weight: 500;
+  border-bottom: none !important;
+}
+
+.side-dropdown a:hover {
+  color: #739832;
+}
+
+/* Submenu das Áreas de Pesquisa escondido por padrão */
+.side-dropdown {
+  display: none;
+  list-style: none;
+  padding-left: 14px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-left: 2px solid #739832;
+}
+
+/* Exibe o submenu apenas quando recebe a classe .open via JS */
+.side-dropdown.open {
+  display: block;
+}
+
+/* Indicador visual da seta (>) no link principal */
+.side-link-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.side-link-main::after {
+  content: '›';
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: transform 0.2s ease;
+  margin-left: 8px;
+}
+
+/* Gira a seta quando o menu está aberto */
+.side-link-main.open::after {
+  transform: rotate(90deg);
+}
+
+/* ==========================================
+   CENTRALIZAÇÃO APENAS DO PAINEL DO REDATOR
+   ========================================== */
+
+/* Aplica centralização exclusivamente quando existir a classe header-painel */
+.main-header.header-painel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 0;
+  width: 100%;
+}
+
+.header-painel .brand-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  text-align: center;
+}
+
+.header-painel .brand-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+} 

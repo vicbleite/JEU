@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel do Redator — JEU Unicamp</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="main-header header-painel">
+    <div class="brand-center">
+      <a href="index.html">
+        <img src="assets/logo.png" alt="Ícone JEU" class="brand-logo-img">
+      </a>
+      <div class="brand-text">
+        <h1 class="brand-title">PAINEL DO REDATOR</h1>
+        <span class="brand-subtitle">ÁREA RESTRITA — JEU UNICAMP</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero-card" style="max-width: 500px; margin: 40px auto;">
+      <h3 class="modal-title">Acesso Restrito</h3>
+      <p class="modal-subtitle">Digite suas credenciais de membro do JEU.</p>
+      
+      <form onsubmit="event.preventDefault(); alert('Login efetuado!');">
+        <div class="form-group">
+          <label>E-mail Institucional</label>
+          <input type="email" placeholder="seuemail@dac.unicamp.br" required>
+        </div>
+        <div class="form-group">
+          <label>Senha</label>
+          <input type="password" placeholder="••••••••" required>
+        </div>
+        <button type="submit" class="btn-primary" style="width: 100%; margin-top: 15px;">Entrar no Painel</button>
+      </form>
+    </section>
+  </main>
+
+</body>
+</html>
