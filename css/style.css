@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 /* ==========================================================================
    VARIABLES & RESET
    ========================================================================== */
@@ -125,21 +129,30 @@ a {
 .brand-center {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 4px; /* Aproxima o texto da imagem */
   text-align: left;
   justify-content: center;
 }
 
 .brand-logo-img {
-  height: 60px;
+  height: 60px; /* Mantém a altura base intocada */
   width: auto;
   border-radius: 4px;
   object-fit: contain;
+  
+  /* Ajuste de tamanho + deslocamento 100% isolados */
+  /* translate(EIXO_X, EIXO_Y) -> X move p/ direita, Y move p/ baixo */
+  transform: scale(2) translate(-4px, 2px);
+  
+  /* Garante que o ponto de pivô não distorça o movimento */
+  transform-origin: center center;
 }
 
 .brand-text {
   display: flex;
   flex-direction: column;
+  align-items: center; /* Centraliza o título e o subtítulo no eixo horizontal */
+  text-align: center;   /* Garante que o alinhamento de texto fique centralizado */
 }
 
 .brand-title {
@@ -159,6 +172,8 @@ a {
   letter-spacing: 1.5px;
   text-transform: uppercase;
   margin-top: 4px;
+  display: block;
+  width: 100%; /* Garante que o subtítulo ocupe toda a largura disponível para centralizar */
 }
 
 /* Coluna Direita (Botão + Busca) */
@@ -381,6 +396,11 @@ a {
   border-radius: 6px;
   padding: 24px;
   transition: transform 0.2s, box-shadow 0.2s;
+  
+  /* Garante alinhamento dos botões no rodapé */
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .research-card:hover {
@@ -405,6 +425,15 @@ a {
 .research-card p {
   font-size: 0.85rem;
   color: var(--grafite-claro);
+  margin-bottom: 16px;
+}
+
+/* Empurra o botão "Ler Matéria" para a base do cartão */
+.research-card .btn-primary,
+.research-card a.btn,
+.research-card button {
+  margin-top: auto;
+  align-self: flex-start;
 }
 
 /* BANNER DIAGNÓSTICO */
@@ -529,48 +558,94 @@ a {
   font-size: 0.9rem;
 }
 
-/* ==========================================================================
-   RODAPÉ
-   ========================================================================== */
+/* ==========================================
+   RODAPÉ (FOOTER)
+   ========================================== */
 footer {
-  background-color: var(--grafite-profundo);
-  color: var(--bege-acinzentado);
-  padding: 40px 20px 20px;
-  font-size: 0.85rem;
-  border-top: 3px solid var(--verde-escuro);
+  background-color: var(--grafite-profundo, #1a1a1a);
+  color: var(--off-white, #f9f9f6);
+  padding: 45px 20px 20px;
+  font-family: var(--fonte-corpo);
 }
 
 .footer-container {
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 40px;
-  margin-bottom: 30px;
+  grid-template-columns: 1.8fr 1fr 1fr 1.2fr; /* Colunas proporcionais */
+  gap: 32px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .footer-col h5 {
-  color: var(--branco);
   font-family: var(--fonte-titulo);
-  font-size: 1.1rem;
-  margin-bottom: 12px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--off-white, #ffffff);
+  margin-bottom: 16px;
+  letter-spacing: 0.5px;
+}
+
+.footer-col-main p {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  opacity: 0.8;
+  margin-top: 12px;
 }
 
 .footer-col ul {
   list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .footer-col ul li {
-  margin-bottom: 8px;
+  margin-bottom: 10px;
+}
+
+.footer-col a {
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  font-size: 0.88rem;
+  transition: color 0.2s ease;
+}
+
+.footer-col a:hover {
+  color: #ffffff;
+}
+
+/* Lista de Contato com Ícones */
+.contact-list li a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.contact-list svg {
+  flex-shrink: 0;
+  stroke: var(--verde-suave, #8a9a86);
 }
 
 .footer-bottom {
   max-width: 1200px;
-  margin: 0 auto;
-  padding-top: 20px;
-  border-top: 1px solid rgba(255,255,255,0.1);
+  margin: 20px auto 0;
   text-align: center;
   font-size: 0.8rem;
+  opacity: 0.6;
+}
+
+/* Responsividade para telas menores (Mobile / Tablet) */
+@media (max-width: 768px) {
+  .footer-container {
+    grid-template-columns: 1fr 1fr; /* 2 colunas no tablet */
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-container {
+    grid-template-columns: 1fr; /* 1 coluna no celular */
+  }
 }
 
 /* ==========================================
@@ -795,7 +870,7 @@ footer {
 .sticky-brand {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 4px; /* Reduz de 10px para 4px para aproximação visual */
   font-family: var(--fonte-titulo);
   font-size: 1.1rem;
   font-weight: 700;
@@ -804,7 +879,27 @@ footer {
 }
 
 .sticky-logo-img {
-  height: 32px;
+  height: 32px; /* Mantém a altura base limpa para não esticar o sticky header */
   width: auto;
   object-fit: contain;
+  
+  /* Escala + Deslocamento 100% isolado (X: direita, Y: baixo) */
+  transform: scale(1.3) translate(0px, 1px);
+  transform-origin: center center;
+}
+
+.contact-list li a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.contact-list li a svg {
+  flex-shrink: 0;
+}
+
+/* Ajuste de paragem da âncora do Histórico de Edições */
+#historico-edicoes {
+  scroll-margin-top: 120px;
 }
