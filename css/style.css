@@ -139,12 +139,7 @@ a {
   width: auto;
   border-radius: 4px;
   object-fit: contain;
-  
-  /* Ajuste de tamanho + deslocamento 100% isolados */
-  /* translate(EIXO_X, EIXO_Y) -> X move p/ direita, Y move p/ baixo */
   transform: scale(2) translate(-4px, 2px);
-  
-  /* Garante que o ponto de pivô não distorça o movimento */
   transform-origin: center center;
 }
 
@@ -260,7 +255,7 @@ a {
 }
 
 /* ==========================================================================
-   LAYOUT GLOBAL & SEÇÕES
+   LAYOUT GLOBAL & BOTÕES PADRONIZADOS
    ========================================================================== */
 .container {
   max-width: 1200px;
@@ -285,6 +280,39 @@ a {
   width: 50px;
   height: 3px;
   background-color: var(--verde-escuro);
+}
+
+/* Estilo padrão de Botão Primário */
+.btn-primary {
+  background-color: var(--verde-escuro);
+  color: var(--branco);
+  padding: 12px 24px;
+  border-radius: 4px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  display: inline-block;
+  transition: opacity 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--grafite-profundo);
+  padding: 12px 24px;
+  border-radius: 4px;
+  font-weight: 600;
+  border: 1px solid var(--grafite-medio);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-secondary:hover {
+  background-color: var(--bege-acinzentado);
 }
 
 /* HERO SECTION */
@@ -332,36 +360,6 @@ a {
   gap: 16px;
 }
 
-.btn-primary {
-  background-color: var(--verde-escuro);
-  color: var(--branco);
-  padding: 12px 24px;
-  border-radius: 4px;
-  font-weight: 600;
-  border: none;
-  cursor: pointer;
-  transition: opacity 0.2s;
-}
-
-.btn-primary:hover {
-  opacity: 0.9;
-}
-
-.btn-secondary {
-  background-color: transparent;
-  color: var(--grafite-profundo);
-  padding: 12px 24px;
-  border-radius: 4px;
-  font-weight: 600;
-  border: 1px solid var(--grafite-medio);
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.btn-secondary:hover {
-  background-color: var(--bege-acinzentado);
-}
-
 .hero-card {
   background-color: var(--grafite-profundo);
   color: var(--off-white);
@@ -382,7 +380,9 @@ a {
   margin-bottom: 20px;
 }
 
-/* ÁREAS DE PESQUISA */
+/* ==========================================================================
+   ÁREAS DE PESQUISA & CARTÕES DE MATÉRIA
+   ========================================================================== */
 .research-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -397,7 +397,7 @@ a {
   padding: 24px;
   transition: transform 0.2s, box-shadow 0.2s;
   
-  /* Garante alinhamento dos botões no rodapé */
+  /* Estrutura Flexbox para alinhar botões na base */
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -425,15 +425,18 @@ a {
 .research-card p {
   font-size: 0.85rem;
   color: var(--grafite-claro);
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 
-/* Empurra o botão "Ler Matéria" para a base do cartão */
+/* Empurra e padroniza botões nos cartões (Largura total + Verde escuro) */
 .research-card .btn-primary,
 .research-card a.btn,
 .research-card button {
   margin-top: auto;
-  align-self: flex-start;
+  width: 100%;
+  align-self: stretch;
+  background-color: var(--verde-escuro);
+  color: var(--branco);
 }
 
 /* BANNER DIAGNÓSTICO */
@@ -572,7 +575,7 @@ footer {
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1.8fr 1fr 1fr 1.2fr; /* Colunas proporcionais */
+  grid-template-columns: 1.8fr 1fr 1fr 1.2fr;
   gap: 32px;
   padding-bottom: 30px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -615,11 +618,11 @@ footer {
   color: #ffffff;
 }
 
-/* Lista de Contato com Ícones */
 .contact-list li a {
   display: flex;
   align-items: center;
   gap: 10px;
+  text-decoration: none;
 }
 
 .contact-list svg {
@@ -635,24 +638,22 @@ footer {
   opacity: 0.6;
 }
 
-/* Responsividade para telas menores (Mobile / Tablet) */
+/* Responsividade para telas menores */
 @media (max-width: 768px) {
   .footer-container {
-    grid-template-columns: 1fr 1fr; /* 2 colunas no tablet */
+    grid-template-columns: 1fr 1fr;
   }
 }
 
 @media (max-width: 480px) {
   .footer-container {
-    grid-template-columns: 1fr; /* 1 coluna no celular */
+    grid-template-columns: 1fr;
   }
 }
 
 /* ==========================================
-   ESTILOS DO MENU LATERAL (DRAWER)
+   MENU LATERAL (DRAWER)
    ========================================== */
-
-/* Fundo escurecido atrás do menu */
 .side-menu-overlay {
   position: fixed;
   top: 0;
@@ -664,7 +665,6 @@ footer {
   z-index: 998;
 }
 
-/* Painel lateral branco */
 .side-menu {
   position: fixed;
   top: 0;
@@ -688,7 +688,6 @@ footer {
   display: block;
 }
 
-/* Cabeçalho do Menu */
 .side-menu-header {
   display: flex;
   justify-content: space-between;
@@ -714,7 +713,6 @@ footer {
   line-height: 1;
 }
 
-/* Lista de links do menu lateral */
 .side-menu-list {
   list-style: none;
   padding: 0;
@@ -736,7 +734,6 @@ footer {
   transition: color 0.2s ease, border-color 0.2s ease;
 }
 
-/* Efeito ao passar o mouse (Hover) e item Ativo */
 .side-menu-list a:hover,
 .side-menu-list a.active {
   color: #739832;
@@ -744,7 +741,6 @@ footer {
   border-bottom: 2px solid #739832;
 }
 
-/* Submenu das Áreas de Pesquisa */
 .side-dropdown-item {
   position: relative;
 }
@@ -756,6 +752,10 @@ footer {
   margin-top: 10px;
   margin-bottom: 10px;
   border-left: 2px solid #739832;
+}
+
+.side-dropdown.open {
+  display: block;
 }
 
 .side-dropdown li {
@@ -773,22 +773,6 @@ footer {
   color: #739832;
 }
 
-/* Submenu das Áreas de Pesquisa escondido por padrão */
-.side-dropdown {
-  display: none;
-  list-style: none;
-  padding-left: 14px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  border-left: 2px solid #739832;
-}
-
-/* Exibe o submenu apenas quando recebe a classe .open via JS */
-.side-dropdown.open {
-  display: block;
-}
-
-/* Indicador visual da seta (>) no link principal */
 .side-link-main {
   display: flex;
   justify-content: space-between;
@@ -804,16 +788,13 @@ footer {
   margin-left: 8px;
 }
 
-/* Gira a seta quando o menu está aberto */
 .side-link-main.open::after {
   transform: rotate(90deg);
 }
 
 /* ==========================================
-   CENTRALIZAÇÃO APENAS DO PAINEL DO REDATOR
+   PAINEL DO REDATOR (HEADER CENTRALIZADO)
    ========================================== */
-
-/* Aplica centralização exclusivamente quando existir a classe header-painel */
 .main-header.header-painel {
   display: flex;
   justify-content: center;
@@ -870,7 +851,7 @@ footer {
 .sticky-brand {
   display: flex;
   align-items: center;
-  gap: 4px; /* Reduz de 10px para 4px para aproximação visual */
+  gap: 4px;
   font-family: var(--fonte-titulo);
   font-size: 1.1rem;
   font-weight: 700;
@@ -879,27 +860,14 @@ footer {
 }
 
 .sticky-logo-img {
-  height: 32px; /* Mantém a altura base limpa para não esticar o sticky header */
+  height: 32px;
   width: auto;
   object-fit: contain;
-  
-  /* Escala + Deslocamento 100% isolado (X: direita, Y: baixo) */
   transform: scale(1.3) translate(0px, 1px);
   transform-origin: center center;
 }
 
-.contact-list li a {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-}
-
-.contact-list li a svg {
-  flex-shrink: 0;
-}
-
-/* Ajuste de paragem da âncora do Histórico de Edições */
+/* Ajuste de paragem da âncora */
 #historico-edicoes {
   scroll-margin-top: 120px;
 }
