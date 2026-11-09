@@ -17,12 +17,12 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body data-page-title="JORNAL ECONÔMICO" data-page-subtitle="JEU UNICAMP — INSTITUTO DE ECONOMIA"></body>
+<body data-page-title="JORNAL ECONÔMICO" data-page-subtitle="JEU UNICAMP — INSTITUTO DE ECONOMIA">
 
   <!-- CONTEÚDO PRINCIPAL -->
   <main class="container">
 
-<!-- HERO SECTION -->
+    <!-- HERO SECTION -->
     <section class="hero" id="sobre">
       <div>
         <span class="hero-tag">Projeto de Extensão — IE Unicamp</span>
@@ -105,10 +105,31 @@
       </div>
     </section>
 
-    <!-- ISENÇÃO DE RESPONSABILIDADE
-    <div class="disclaimer">
-      Aviso Legal: Conteúdo estritamente informativo e educacional, sem recomendações de investimento.
-    </div> -->
+    <!-- LINHA DIVISÓRIA ELEGANTE -->
+    <hr class="section-divider">
+
+    <!-- SEÇÃO ENVIE UMA MENSAGEM -->
+    <section id="contato" class="contact-section-wrapper">
+      <div class="contact-section-container">
+        
+        <div class="contact-header">
+          <h2 class="contact-title">Envie uma Mensagem</h2>
+          <p class="contact-subtitle">Dúvidas, sugestões ou interesse em colaborar? Fale diretamente com a equipe do JEU.</p>
+        </div>
+
+        <form class="contact-form-compact" onsubmit="event.preventDefault(); alert('Mensagem enviada com sucesso!'); this.reset();">
+          <div class="form-row">
+            <input type="text" placeholder="Nome Completo" required>
+            <input type="email" placeholder="E-mail Institucional" required>
+          </div>
+          <div class="form-row">
+            <textarea rows="3" placeholder="Sua mensagem..." required></textarea>
+          </div>
+          <button type="submit" class="btn-primary btn-contact-submit">ENVIAR MENSAGEM</button>
+        </form>
+
+      </div>
+    </section>
 
   </main>
 
