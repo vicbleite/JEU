@@ -1,0 +1,24 @@
+# --- DADOS SENSÍVEIS E CONFIGURAÇÕES DE AMBIENTE ---
+.env
+.env.local
+*.env
+config/segredos.json
+credentials.json
+
+# --- CONFIGURAÇÕES DA SUA IDE / EDITOR ---
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# --- SISTEMA OPERACIONAL ---
+.DS_Store
+Thumbs.db
+
+# --- DEPENDÊNCIAS E BUILDS (caso use Node/Bundlers no futuro) ---
+node_modules/
+dist/
+build/
+*.log

@@ -1,0 +1,91 @@
+<div class="panel-card">
+  <h2 class="panel-card-title">Publicar Nova Matéria</h2>
+  <p class="panel-card-subtitle">Preencha os metadados e anexe o link do Google Docs já aprovado pela diretoria ou o arquivo do artigo.</p>
+
+  <form id="formMateria" onsubmit="enviarMateria(event)">
+    <div class="form-row" style="display: flex; gap: 20px;">
+      <div class="form-group flex-2" style="flex: 2;">
+        <label>Título da Matéria</label>
+        <input type="text" id="materiaTitulo" placeholder="Ex: O Ciclo de Cortes da Selic e o Copom" required>
+      </div>
+      <div class="form-group flex-1" style="flex: 1;">
+        <label>Área de Pesquisa</label>
+        <select id="materiaCategoria" required>
+          <option value="">Selecione a Área...</option>
+          <option value="Diagnóstico Mensal">Diagnóstico Mensal</option>
+          <option value="Equities">Equities</option>
+          <option value="Renda Fixa">Renda Fixa</option>
+          <option value="Commodities">Commodities</option>
+          <option value="Forex">Forex</option>
+          <option value="Global">Global</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group" style="margin-bottom: 16px;">
+      <label>Subtítulo / Linha de Foco</label>
+      <input type="text" id="materiaSubtitulo" placeholder="Ex: Uma avaliação sobre o ritmo de redução da taxa básica de juros..." required>
+    </div>
+
+    <div class="form-row" style="display: flex; gap: 20px;">
+      <!-- AUTORES / COLABORADORES MULTIUSUÁRIO -->
+      <div class="form-group flex-1" style="flex: 1;">
+        <label>Autores / Colaboradores</label>
+        <div class="collaborators-select-wrapper">
+          <div id="collaboratorsTags" class="collaborators-tags">
+            <!-- Gerado via JS -->
+          </div>
+          <div class="add-collaborator-dropdown" style="margin-top: 8px;">
+            <select id="selectCoautor" onchange="adicionarCoautor(this)">
+              <option value="">+ Adicionar Coautor / Colaborador...</option>
+              <option value="carlos.eduardo@jeu.unicamp.br">Carlos Eduardo (Equities)</option>
+              <option value="mariana.lima@jeu.unicamp.br">Mariana Lima (Macroeconomia)</option>
+              <option value="pedro.alcantara@jeu.unicamp.br">Pedro Alcantara (Renda Fixa)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- UPLOAD DE IMAGEM -->
+      <div class="form-group flex-1" style="flex: 1;">
+        <label>Imagem de Capa (.png, .jpg ou .webp)</label>
+        <div class="custom-file-wrapper" style="margin-bottom: 8px;">
+          <label for="materiaImagemArquivo" class="btn-custom-upload">
+            📁 Selecionar Imagem...
+          </label>
+          <input type="file" id="materiaImagemArquivo" class="custom-file-input" accept="image/*" onchange="atualizarNomeArquivo(this, 'nomeImagemSelecionada')">
+          <span id="nomeImagemSelecionada" class="file-selected-name">Nenhum arquivo selecionado</span>
+        </div>
+        <input type="url" id="materiaImagemUrl" placeholder="Ou cole a URL da imagem (https://...)">
+      </div>
+    </div>
+
+    <!-- UPLOAD DE CONTEÚDO -->
+    <div class="upload-box-container">
+      <div class="upload-box-header">
+        📄 Conteúdo Aprovado (Google Docs ou Arquivo)
+      </div>
+      <div class="upload-options-grid">
+        <div class="form-group flex-1" style="flex: 1;">
+          <label>Link do Google Docs / Drive (Revisado)</label>
+          <input type="url" id="materiaLinkDocs" placeholder="https://docs.google.com/document/d/...">
+        </div>
+        <div class="form-group flex-1" style="flex: 1;">
+          <label>Ou Anexar Arquivo (.docx / .pdf)</label>
+          <div class="custom-file-wrapper" style="margin-top: 2px;">
+            <label for="materiaArquivo" class="btn-custom-upload">
+              📎 Escolher Documento...
+            </label>
+            <input type="file" id="materiaArquivo" class="custom-file-input" accept=".docx,.pdf,.txt" onchange="atualizarNomeArquivo(this, 'nomeDocSelecionado')">
+            <span id="nomeDocSelecionado" class="file-selected-name">Nenhum arquivo selecionado</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" class="btn-secondary" onclick="alert('Simulação de pré-visualização')">Pré-visualizar Matéria</button>
+      <button type="submit" class="btn-primary">Publicar Matéria</button>
+    </div>
+  </form>
+</div>

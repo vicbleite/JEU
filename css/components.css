@@ -1,0 +1,264 @@
+/* ==========================================================================
+   BOTÕES PADRONIZADOS
+   ========================================================================== */
+.btn-primary {
+  background-color: var(--verde-escuro);
+  color: var(--branco);
+  padding: 12px 24px;
+  border-radius: 4px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  display: inline-block;
+  transition: opacity 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--grafite-profundo);
+  padding: 12px 24px;
+  border-radius: 4px;
+  font-weight: 600;
+  border: 1px solid var(--grafite-medio);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-secondary:hover {
+  background-color: var(--bege-acinzentado);
+}
+
+.btn-entrar {
+  background-color: var(--verde-caixa-clara);
+  color: var(--verde-escuro);
+  border: 1px solid rgba(85, 107, 70, 0.25);
+  border-radius: 20px;
+  padding: 6px 18px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.btn-entrar:hover {
+  background-color: var(--verde-escuro);
+  color: var(--branco);
+}
+
+/* ==========================================================================
+   CAIXA DE BUSCA DA HEADER
+   ========================================================================== */
+.search-box {
+  display: flex;
+  align-items: center;
+  background-color: var(--branco);
+  border: 1px solid var(--bege-acinzentado);
+  border-radius: 20px;
+  padding: 5px 12px;
+  transition: all 0.3s ease;
+}
+
+.search-box:focus-within {
+  border-color: var(--verde-escuro);
+  box-shadow: 0 0 5px rgba(85, 107, 70, 0.2);
+}
+
+.search-input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 0.8rem;
+  width: 100px;
+  transition: width 0.3s ease;
+  color: var(--grafite-profundo);
+}
+
+.search-input:focus {
+  width: 150px;
+}
+
+.search-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  color: var(--grafite-claro);
+  transition: color 0.2s ease;
+}
+
+.search-btn:hover {
+  color: var(--verde-escuro);
+}
+
+.search-icon {
+  width: 15px;
+  height: 15px;
+}
+
+/* ==========================================================================
+   UPLOAD PERSONALIZADO DE ARQUIVOS
+   ========================================================================== */
+.custom-file-input {
+  display: none !important;
+}
+
+.custom-file-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn-custom-upload {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--branco);
+  color: var(--grafite-profundo);
+  border: 1px solid var(--bege-acinzentado);
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-family: var(--fonte-corpo);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-custom-upload:hover {
+  border-color: var(--verde-escuro);
+  color: var(--verde-escuro);
+  background-color: rgba(85, 107, 70, 0.05);
+}
+
+.file-selected-name {
+  font-size: 0.82rem;
+  color: var(--grafite-claro);
+  font-style: italic;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+
+/* ==========================================================================
+   MODAL DE LOGIN
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: var(--branco);
+  width: 100%;
+  max-width: 400px;
+  padding: 30px;
+  border-radius: 8px;
+  position: relative;
+}
+
+.close-modal {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--grafite-claro);
+}
+
+.modal-title {
+  font-family: var(--fonte-titulo);
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+}
+
+.modal-subtitle {
+  font-size: 0.85rem;
+  color: var(--grafite-claro);
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--bege-acinzentado);
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+/* ==========================================
+   TAGS / CHIPS DE COLABORADORES
+   ========================================== */
+.collaborators-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-height: 38px;
+  padding: 6px;
+  background-color: var(--off-white);
+  border: 1px solid var(--bege-acinzentado);
+  border-radius: 6px;
+  align-items: center;
+}
+
+.collaborator-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--branco);
+  color: var(--grafite-profundo);
+  border: 1px solid var(--bege-acinzentado);
+  padding: 4px 10px;
+  border-radius: 16px;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.collaborator-chip.main-author {
+  background-color: var(--verde-caixa-clara);
+  color: var(--verde-escuro);
+  border-color: rgba(85, 107, 70, 0.3);
+}
+
+.collaborator-chip .btn-remove-chip {
+  border: none;
+  background: transparent;
+  color: var(--grafite-claro);
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+.collaborator-chip .btn-remove-chip:hover {
+  color: #d9534f;
+}

@@ -1,0 +1,479 @@
+/* ==========================================================================
+   NAVEGAÇÃO POR TABS DO PAINEL (FASE 2)
+   ========================================================================== */
+.panel-tabs {
+  display: flex;
+  gap: 12px;
+  background-color: rgba(200, 193, 182, 0.2);
+  padding: 8px;
+  border-radius: 10px;
+  border: 1px solid var(--bege-acinzentado);
+  margin-bottom: 35px;
+  align-items: center;
+}
+
+.tab-btn {
+  background: transparent;
+  border: none;
+  padding: 10px 22px;
+  font-family: var(--fonte-corpo);
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--grafite-claro);
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.25s ease;
+}
+
+.tab-btn:hover {
+  color: var(--grafite-profundo);
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.tab-btn.active {
+  background-color: var(--verde-escuro);
+  color: var(--branco);
+  box-shadow: 0 2px 8px rgba(85, 107, 70, 0.25);
+}
+
+.tab-btn.btn-logout {
+  margin-left: auto;
+  background-color: rgba(217, 83, 79, 0.1);
+  color: #d9534f;
+  border: 1px solid rgba(217, 83, 79, 0.2);
+}
+
+.tab-btn.btn-logout:hover {
+  background-color: #d9534f;
+  color: var(--branco);
+}
+
+.tab-content {
+  display: none !important;
+}
+
+.tab-content.active {
+  display: block !important;
+}
+
+/* ==========================================================================
+   CARDS E FORMULÁRIO DE NOVA MATÉRIA
+   ========================================================================== */
+.panel-card {
+  background-color: var(--branco);
+  border: 1px solid var(--bege-acinzentado);
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+}
+
+.panel-card-title {
+  font-family: var(--fonte-titulo);
+  font-size: 1.8rem;
+  color: var(--grafite-profundo);
+  margin-bottom: 6px;
+}
+
+.panel-card-subtitle {
+  font-size: 0.9rem;
+  color: var(--grafite-claro);
+  margin-bottom: 30px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--grafite-profundo);
+  margin-bottom: 8px;
+}
+
+#formMateria input[type="text"],
+#formMateria input[type="url"],
+#formMateria select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--bege-acinzentado);
+  border-radius: 6px;
+  background-color: var(--off-white);
+  color: var(--grafite-profundo);
+  font-family: var(--fonte-corpo);
+  font-size: 0.9rem;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+#formMateria input:focus,
+#formMateria select:focus {
+  border-color: var(--verde-escuro);
+  background-color: var(--branco);
+  box-shadow: 0 0 0 3px rgba(85, 107, 70, 0.15);
+}
+
+.upload-box-container {
+  background-color: var(--off-white);
+  border: 2px dashed var(--bege-acinzentado);
+  border-radius: 8px;
+  padding: 24px;
+  margin-top: 10px;
+  margin-bottom: 24px;
+}
+
+.upload-box-header {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--grafite-profundo);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.upload-options-grid {
+  display: flex;
+  gap: 20px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 14px;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid var(--bege-acinzentado);
+}
+
+.form-actions .btn-secondary {
+  border: 1px solid var(--bege-acinzentado);
+  color: var(--grafite-profundo);
+  background: var(--off-white);
+}
+
+.form-actions .btn-secondary:hover {
+  background: var(--bege-acinzentado);
+}
+
+/* ==========================================================================
+   TABELA E BADGES DA ABA MINHAS MATÉRIAS
+   ========================================================================== */
+.panel-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 20px;
+  border: 1px solid var(--bege-acinzentado);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.panel-table th {
+  background-color: var(--off-white);
+  color: var(--grafite-profundo);
+  font-family: var(--fonte-corpo);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 14px 18px;
+  text-align: left;
+  border-bottom: 1px solid var(--bege-acinzentado);
+}
+
+.panel-table td {
+  padding: 16px 18px;
+  font-size: 0.9rem;
+  color: var(--grafite-profundo);
+  border-bottom: 1px solid rgba(200, 193, 182, 0.4);
+  background-color: var(--branco);
+  vertical-align: middle;
+}
+
+.panel-table tr:last-child td {
+  border-bottom: none;
+}
+
+.panel-table tr:hover td {
+  background-color: rgba(200, 193, 182, 0.08);
+}
+
+.badge {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.badge-success {
+  background-color: #e2ebd8;
+  color: #3b522b;
+  border: 1px solid #c8dbc0;
+}
+
+.badge-warning {
+  background-color: #fef3d6;
+  color: #8a6414;
+  border: 1px solid #f7e2a9;
+}
+
+.btn-table {
+  background-color: var(--off-white);
+  color: var(--grafite-profundo);
+  border: 1px solid var(--bege-acinzentado);
+  padding: 7px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: var(--fonte-corpo);
+  font-size: 0.82rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn-table:hover {
+  background-color: var(--verde-escuro);
+  color: var(--branco);
+  border-color: var(--verde-escuro);
+}
+
+/* ==========================================================================
+   MENSAGENS DOS LEITORES
+   ========================================================================== */
+.messages-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.message-card {
+  background-color: var(--off-white);
+  border: 1px solid var(--bege-acinzentado);
+  border-left: 4px solid var(--verde-escuro);
+  border-radius: 8px;
+  padding: 20px 24px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.message-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.message-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed var(--bege-acinzentado);
+}
+
+.message-sender {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sender-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--grafite-profundo);
+}
+
+.sender-email {
+  font-size: 0.82rem;
+  color: var(--grafite-claro);
+  background-color: var(--branco);
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--bege-acinzentado);
+}
+
+.message-date {
+  font-size: 0.78rem;
+  color: var(--grafite-claro);
+  font-weight: 500;
+}
+
+.message-body {
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--grafite-profundo);
+  margin-bottom: 14px;
+  font-style: normal;
+}
+
+.message-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.btn-msg-reply {
+  background-color: var(--branco);
+  color: var(--verde-escuro);
+  border: 1px solid var(--verde-escuro);
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.btn-msg-reply:hover {
+  background-color: var(--verde-escuro);
+  color: var(--branco);
+}
+
+/* ==========================================
+   WIDGET DE PERFIL NA HEADER & SLIDING DRAWER
+   ========================================== */
+.header-painel {
+  position: relative;
+}
+
+/* Pílula no Canto Superior Direito */
+.user-profile-widget {
+  position: absolute;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--branco);
+  border: 1px solid var(--bege-acinzentado);
+  padding: 6px 14px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+}
+
+.user-profile-widget:hover {
+  border-color: var(--verde-escuro);
+  box-shadow: 0 4px 12px rgba(85, 107, 70, 0.15);
+  transform: translateY(-50%) scale(1.02);
+}
+
+.widget-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid var(--verde-escuro);
+}
+
+.widget-info {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.widget-name {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--grafite-profundo);
+  line-height: 1.1;
+}
+
+.widget-role {
+  font-size: 0.7rem;
+  color: var(--verde-escuro);
+  font-weight: 600;
+}
+
+/* Overlay Escuro */
+.profile-drawer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: none;
+  z-index: 1050;
+  backdrop-filter: blur(2px);
+}
+
+.profile-drawer-overlay.active {
+  display: block;
+}
+
+/* Drawer Deslizante Lateral (Direita) */
+.profile-drawer {
+  position: fixed;
+  top: 0;
+  right: -400px;
+  width: 360px;
+  height: 100%;
+  background-color: var(--branco);
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
+  transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1100;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-drawer.active {
+  right: 0;
+}
+
+.drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--bege-acinzentado);
+  background-color: var(--off-white);
+}
+
+.drawer-header h3 {
+  font-family: var(--fonte-titulo);
+  font-size: 1.25rem;
+  color: var(--grafite-profundo);
+}
+
+.btn-close-drawer {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: var(--grafite-claro);
+  cursor: pointer;
+  line-height: 1;
+}
+
+.btn-close-drawer:hover {
+  color: var(--grafite-profundo);
+}
+
+.drawer-content {
+  padding: 24px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.avatar-edit-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.drawer-avatar-img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--verde-escuro);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}

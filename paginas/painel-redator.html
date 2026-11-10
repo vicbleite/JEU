@@ -5,9 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Painel do Redator — JEU Unicamp</title>
 
-  <!-- Ícone da Aba do Navegador (Favicon) -->
   <link rel="icon" type="image/png" href="../assets/logo-favicon.png">
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -15,6 +13,7 @@
 </head>
 <body>
 
+  <!-- CABEÇALHO DEDICADO DO PAINEL -->
   <header class="main-header header-painel">
     <div class="brand-center">
       <a href="../index.html">
@@ -25,26 +24,118 @@
         <span class="brand-subtitle">ÁREA RESTRITA — JEU UNICAMP</span>
       </div>
     </div>
+
+    <div id="userProfileWidget" class="user-profile-widget" style="display: none;" onclick="abrirDrawerPerfil()">
+      <img id="headerAvatarImg" src="https://ui-avatars.com/api/?name=Ana+Souza&background=556B46&color=fff&size=64" alt="Avatar" class="widget-avatar">
+      <div class="widget-info">
+        <span id="headerUserName" class="widget-name">Ana Souza</span>
+        <span id="headerUserRole" class="widget-role">Redatora</span>
+      </div>
+    </div>
   </header>
 
   <main class="container">
-    <section class="hero-card" style="max-width: 500px; margin: 40px auto;">
+
+    <!-- 1. TELA DE LOGIN -->
+    <section id="loginSection" class="hero-card" style="max-width: 480px; margin: 40px auto;">
       <h3 class="modal-title">Acesso Restrito</h3>
-      <p class="modal-subtitle">Digite suas credenciais de membro do JEU.</p>
+      <p class="modal-subtitle">Digite suas credenciais de membro do JEU para continuar.</p>
       
-      <form onsubmit="event.preventDefault(); alert('Login efetuado!');">
+      <form id="loginForm" onsubmit="realizarLogin(event)">
         <div class="form-group">
           <label>E-mail Institucional</label>
-          <input type="email" placeholder="seuemail@dac.unicamp.br" required>
+          <input type="email" id="loginEmail" placeholder="seuemail@dac.unicamp.br" required>
         </div>
         <div class="form-group">
           <label>Senha</label>
-          <input type="password" placeholder="••••••••" required>
+          <input type="password" id="loginSenha" placeholder="••••••••" required>
         </div>
         <button type="submit" class="btn-primary" style="width: 100%; margin-top: 15px;">Entrar no Painel</button>
       </form>
     </section>
+
+    <!-- 2. ÁREA INTERNA DO PAINEL -->
+    <section id="panelSection" style="display: none;">
+      
+      <!-- NAVEGAÇÃO POR ABAS -->
+      <nav class="panel-tabs">
+        <button class="tab-btn active" onclick="carregarAba('tab-nova-materia', this)">✍️ Nova Matéria</button>
+        <button class="tab-btn" onclick="carregarAba('tab-minhas-materias', this)">📊 Minhas Matérias</button>
+        <button class="tab-btn" onclick="carregarAba('tab-mensagens', this)">📩 Mensagens dos Leitores</button>
+        <button class="tab-btn btn-logout" onclick="realizarLogout()">🚪 Sair</button>
+      </nav>
+
+      <!-- CONTÊINER DINÂMICO ONDE O CONTEÚDO DAS ABAS É INJETADO -->
+      <div id="tabContainer"></div>
+
+    </section>
+
   </main>
 
+  <!-- OVERLAY E SLIDING MENU (DRAWER DE PERFIL) -->
+  <div id="profileDrawerOverlay" class="profile-drawer-overlay" onclick="fecharDrawerPerfil()"></div>
+  
+  <aside id="profileDrawer" class="profile-drawer">
+    <div class="drawer-header">
+      <h3>Configurações do Perfil</h3>
+      <button class="btn-close-drawer" onclick="fecharDrawerPerfil()">&times;</button>
+    </div>
+
+    <div class="drawer-content">
+      <form id="formPerfilDrawer" onsubmit="salvarPerfil(event)">
+        <div class="avatar-edit-box">
+          <img id="drawerAvatarPreview" src="https://ui-avatars.com/api/?name=Ana+Souza&background=556B46&color=fff&size=128" alt="Foto de Perfil" class="drawer-avatar-img">
+          <div class="custom-file-wrapper" style="margin-top: 8px;">
+            <label for="perfilFotoArquivo" class="btn-custom-upload" style="padding: 6px 12px; font-size: 0.8rem;">
+              📷 Alterar Foto...
+            </label>
+            <input type="file" id="perfilFotoArquivo" class="custom-file-input" accept="image/*" onchange="atualizarNomeArquivo(this, 'nomeFotoPerfil')">
+          </div>
+          <span id="nomeFotoPerfil" class="file-selected-name" style="margin-top: 4px;">Nenhum arquivo selecionado</span>
+        </div>
+
+        <div class="form-group">
+          <label>Nome Completo / Exibição</label>
+          <input type="text" id="perfilNome" value="Ana Souza" required>
+        </div>
+
+        <div class="form-group">
+          <label>Cargo / Editoria Principal</label>
+          <input type="text" id="perfilCargo" value="Analista-Chefe de Macroeconomia" required>
+        </div>
+
+        <div class="form-group">
+          <label>E-mail Institucional</label>
+          <input type="email" id="perfilEmail" value="ana.souza@jeu.unicamp.br" disabled style="background-color: rgba(200, 193, 182, 0.2); cursor: not-allowed;">
+        </div>
+
+        <div class="form-group">
+          <label>Mini Biografia do Autor</label>
+          <textarea id="perfilBio" rows="3" style="width: 100%; padding: 10px; border: 1px solid var(--bege-acinzentado); border-radius: 6px; font-family: var(--fonte-corpo); font-size: 0.85rem; background: var(--off-white);" placeholder="Sua trajetória de pesquisa...">Mestranda em Economia Aplicada pela Unicamp com foco em política monetária. Analista e redatora no Jornal Economia Unicamp desde 2025.</textarea>
+        </div>
+
+        <hr style="border: none; border-top: 1px solid var(--bege-acinzentado); margin: 20px 0; opacity: 0.5;">
+
+        <h4 style="font-family: var(--fonte-titulo); font-size: 1.1rem; margin-bottom: 12px; color: var(--grafite-profundo);">Credenciais & Segurança</h4>
+
+        <div class="form-group">
+          <label>Nova Senha</label>
+          <input type="password" id="perfilNovaSenha" placeholder="Deixe em branco para não alterar">
+        </div>
+
+        <div class="form-group">
+          <label style="display: flex; align-items: center; gap: 8px; font-weight: normal; cursor: pointer; text-transform: none; letter-spacing: normal;">
+            <input type="checkbox" id="perfilNotifEmail" checked style="width: auto;"> Alertar por e-mail sobre mensagens
+          </label>
+        </div>
+
+        <div class="form-actions" style="margin-top: 24px;">
+          <button type="submit" class="btn-primary" style="width: 100%;">Salvar Perfil</button>
+        </div>
+      </form>
+    </div>
+  </aside>
+
+  <script src="../js/painel-redator.js"></script>
 </body>
 </html>

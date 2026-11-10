@@ -1,0 +1,293 @@
+/* ==========================================================================
+   HERO SECTION & TITULARES DA HOME
+   ========================================================================== */
+.section-title {
+  font-family: var(--fonte-titulo);
+  font-size: 2rem;
+  margin-bottom: 24px;
+  color: var(--grafite-profundo);
+  position: relative;
+  padding-bottom: 8px;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background-color: var(--verde-escuro);
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 40px;
+  align-items: center;
+  background-color: var(--branco);
+  padding: 40px;
+  border-radius: 8px;
+  border: 1px solid var(--bege-acinzentado);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  margin-bottom: 50px;
+}
+
+.hero-tag {
+  background-color: var(--verde-escuro);
+  color: var(--branco);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: inline-block;
+  margin-bottom: 12px;
+}
+
+.hero-title {
+  font-family: var(--fonte-titulo);
+  font-size: 2.5rem;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.hero-text {
+  color: var(--grafite-claro);
+  margin-bottom: 24px;
+  font-size: 1.05rem;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+}
+
+.hero-card {
+  background-color: var(--grafite-profundo);
+  color: var(--off-white);
+  padding: 30px;
+  border-radius: 8px;
+  border-top: 4px solid var(--verde-suave);
+}
+
+.hero-card h3 {
+  font-family: var(--fonte-titulo);
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+
+.hero-card p {
+  font-size: 0.9rem;
+  color: var(--bege-acinzentado);
+  margin-bottom: 20px;
+}
+
+/* ==========================================================================
+   ÁREAS DE PESQUISA & CARTÕES DE MATÉRIA
+   ========================================================================== */
+.research-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-bottom: 50px;
+}
+
+.research-card {
+  background-color: var(--branco);
+  border: 1px solid var(--bege-acinzentado);
+  border-radius: 6px;
+  padding: 24px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.research-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+}
+
+.research-card-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--verde-escuro);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.research-card h4 {
+  font-family: var(--fonte-titulo);
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+}
+
+.research-card p {
+  font-size: 0.85rem;
+  color: var(--grafite-claro);
+  margin-bottom: 20px;
+}
+
+.research-card .btn-primary,
+.research-card a.btn,
+.research-card button {
+  margin-top: auto;
+  width: 100%;
+  align-self: stretch;
+  background-color: var(--verde-escuro);
+  color: var(--branco);
+}
+
+/* BANNER DIAGNÓSTICO */
+.diagnostic-banner {
+  background-color: var(--grafite-medio);
+  color: var(--off-white);
+  padding: 40px;
+  border-radius: 8px;
+  margin-bottom: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+}
+
+.diagnostic-info h3 {
+  font-family: var(--fonte-titulo);
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.diagnostic-info p {
+  color: var(--bege-acinzentado);
+  max-width: 600px;
+}
+
+/* ESTRUTURA INTERNA DA HOME */
+.structure-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+.structure-box {
+  background-color: var(--branco);
+  padding: 30px;
+  border-radius: 6px;
+  border-left: 4px solid var(--verde-escuro);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.structure-box h4 {
+  font-family: var(--fonte-titulo);
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+}
+
+.disclaimer {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--grafite-claro);
+  font-style: italic;
+  margin-bottom: 40px;
+  padding: 10px;
+  background-color: rgba(200, 193, 182, 0.2);
+  border-radius: 4px;
+}
+
+/* ==========================================================================
+   SEÇÃO ENVIE UMA MENSAGEM (PÚBLICA)
+   ========================================================================== */
+.contact-section-wrapper {
+  background-color: rgba(200, 193, 182, 0.15);
+  border: 1px solid var(--bege-acinzentado);
+  border-radius: 8px;
+  padding: 40px;
+  margin-bottom: 50px;
+}
+
+.contact-section-container {
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.contact-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.contact-header .contact-title {
+  font-family: var(--fonte-titulo);
+  font-size: 1.8rem;
+  color: var(--grafite-profundo);
+  margin-bottom: 6px;
+}
+
+.contact-header .contact-subtitle {
+  font-size: 0.88rem;
+  color: var(--grafite-claro);
+}
+
+.contact-form-compact {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.contact-form-compact .form-row {
+  display: flex;
+  gap: 14px;
+}
+
+.contact-form-compact input,
+.contact-form-compact textarea {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid var(--bege-acinzentado);
+  border-radius: 4px;
+  background-color: var(--branco);
+  color: var(--grafite-profundo);
+  font-family: var(--fonte-corpo);
+  font-size: 0.88rem;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.contact-form-compact input::placeholder,
+.contact-form-compact textarea::placeholder {
+  color: var(--grafite-claro);
+  opacity: 0.7;
+}
+
+.contact-form-compact input:focus,
+.contact-form-compact textarea:focus {
+  border-color: var(--verde-escuro);
+  box-shadow: 0 0 5px rgba(85, 107, 70, 0.2);
+}
+
+.contact-form-compact textarea {
+  resize: vertical;
+}
+
+.btn-contact-submit {
+  width: 100%;
+  padding: 12px;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background-color: var(--verde-escuro);
+  color: var(--branco);
+  border: none;
+}
+
+.btn-contact-submit:hover {
+  opacity: 0.9;
+}
+
+@media (max-width: 600px) {
+  .contact-form-compact .form-row {
+    flex-direction: column;
+  }
+}
